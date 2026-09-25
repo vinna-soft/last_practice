@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super admin assign city admin</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='super_admin.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Assign city wise adimin</h2>
+            <div class="nav">
+            <a href="/super_admin/admins">View Admins</a>
+            </div>
+        </div>
+    
+        <form method="POST">
+        <label>Select City:</label><br>
+        <select name="city_name" required>
+            <option value="">Select a city</option>
+            {% for city in cities %}
+                <option value="{{ city.city_name }}"> {{ city.city_name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Select Admin:</label><br>
+        <select name="admin_id" required>
+            <option value="">Select a Admin</option>
+            {% for admin in admins %}
+                <option value="{{ admin.admin_id }}">{{admin.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Assign</button>
+        </form>
+        <p style="color: rgb(217, 22, 26);">{{ message }}</p>
+    </div>
+  </body>
+</html>
+
+        

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='reports.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Service provider Panel</h2>
+        <a href="/provider/dashboard">Dashbord</a>
+        <a href="/provider/profile">My Profile</a>
+        <a href="/provider/my_jobs">My Jobs</a>
+        <a href="#">Earnings</a>
+        <a href="#">Chat</a>
+        <a href="/provider/verification">Verification</a>
+        <a href="/provider/notifications">🔔Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>      
+    </div>
+
+    <div class="reports-card">
+
+    <h2>My Profile</h2>
+
+    <div class="section-title">Basic Info</div>
+
+    <div class="info"><b>Name:</b> <span>{{ provider.name }}</span></div>
+    <div class="info"><b>Email:</b> <span>{{ provider.email }}</span></div>
+    <div class="info"><b>mobile:</b> <span>{{ provider.mobile }}</span></div>
+    <div class="info"><b>Service:</b> <span>{{ provider.service_name }}</span></div>
+    <div class="info"><b>City:</b> <span>{{ provider.city }}</span></div>
+    <div class="info"><b>Zone name:</b> <span>{{ provider.zone_name if provider.zone_name else 'N|A'}}</span></div>
+    <div class="info"><b>Address:</b> <span>{{ provider.address }}</span></div>
+    <div class="info"><b>Experience:</b> <span>{{ provider.experience }} years </span></div>
+    <div class="info"><b>Price:</b> <span>{{ provider.price }} Starting </span></div>
+    <div class="info"><b>Provider Status:</b> <span>{{ provider.provider_status }}</span></div>
+    <hr>
+    <div class="section-title">Verification Details</div>
+    <div class="info"><b>Date of Birth:</b> <span>{{ provider.dob }}</span></div>
+    <div class="info"><b>Bank Account:</b> <span>{{ provider.bank_account }}</span></div>
+    <div class="info"><b>IFS Code:</b> <span>{{ provider.ifsc_code }}</span></div>
+    <div class="info"><b>Adhar Number:</b> <span>{{ provider.adhar }}</span></div>
+    <div class="info"><b>Pan number:</b> <span>{{ provider.pan }}</span></div>
+    <div class="info">
+        <b>Status:</b> 
+        <span class="status {{ provider.verification_status }}">{{ provider.verification_status }}</span>
+    </div>
+    <hr>
+    <div class="info"><b>Service Inclusions:</b><span>{{ provider.inclusions }}</span></div>
+
+
+    {% if provider.provider_status == 'available' %}
+        <a href="/provider/unavailable/{{ provider.provider_id }}">
+            <button style="background:red; color:white;">Unavailable</button>
+        </a>
+
+    {% else %}
+        <a href="/provider/available/{{ provider.provider_id }}">
+            <button style="background:green; color:white;">Available</button>
+        </a>
+    {% endif %}
+
+    <a href="/provider/edit_profile" class="btn btn-edit">Edit Profile</a>
+    <a href="/provider/change_password" class="btn btn-password">Change Password</a>
+    </div>
+
+</body>
+</html>

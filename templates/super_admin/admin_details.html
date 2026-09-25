@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin add zone</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='view.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    <div class="booking-card">
+
+    <h2>Admin Details</h2>
+
+    <div class="section-title">Admin Info</div>
+
+    <div class="info"><b>Admin ID:</b> <span>{{ admin.admin_id }}</span></div>
+    <div class="info"><b>Name:</b> <span>{{ admin.name }}</span></div>
+    <div class="info"><b>Email:</b> <span>{{ admin.email }}</span></div>
+    <div class="info"><b>mobile:</b> <span>{{ admin.mobile }}</span></div>
+    <div class="info"><b>City:</b> <span>{{ admin.city }}</span></div>
+    <div class="info"><b>Zone name:</b> <span>{{ admin.zone_name if admin.zone_name else 'N|A'}}</span></div>
+    
+      
+    <div class="info">
+        <b>Status:</b> 
+        {% if admin.status == 'active' %}
+            <span style="color: green; font-weight: bold;">Active</span>
+        {% else %}
+            <span style="color: red; font-weight: bold;">Inactive</span>
+         {% endif %}
+    </div>
+   
+    <hr>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancel Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: whitesmoke;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            display: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Cancel Booking</h2>
+
+    <form method="POST" action="/cancel/{{ booking_id }}">
+
+        <label>Select Reason</label>
+        <select name="reason" id="reason">
+            <option value="">-- Select Reason --</option>
+            <option value="wrong_service">Selected wrong service</option>
+            <option value="better_price">Found better price</option>
+            <option value="not_needed">Service no longer needed</option>
+            <option value="not_available">Not available at time</option>
+            <option value="delay">Provider delayed</option>
+            <option value="emergency">Emergency</option>
+            <option value="reschedule">Want to reschedule</option>
+            <option value="other">Other</option>
+        </select>
+
+        <div id="reason_error" class="error"></div>
+
+        <textarea id="custom_reason" name="custom_reason" placeholder="Enter your reason..."></textarea>
+        <div id="custom_error" class="error"></div>
+
+        <button type="submit">Cancel Booking</button>
+    </form>
+</div>
+</body>
+</html>

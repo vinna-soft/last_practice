@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin add city</title>
+<style>
+     *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+body{
+    background: whitesmoke;
+    display: flex;
+}
+.sidebar{
+    width: 220px;
+    height: 100vh;
+    background: #2c3f75;
+    color: white;
+    padding: 20px;
+}
+.sidebar h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+   }
+.sidebar a:hover{
+    background: green;
+}
+.main{
+    flex: 1;
+    margin: 20px;
+    
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px 80px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.nav a{color: black;
+    text-decoration: none;
+    margin-right: 40px;
+    font-size: 18px;
+}
+
+input, textarea{
+    width: 40%;
+    padding: 8px;
+    margin: 12px;
+    margin-bottom: 8px;
+}
+button{
+    background: rgb(120, 188, 18);
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 40%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+</style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Add City</h2>
+            <div class="nav">
+            <a href="/super_admin/cities">View Cities</a>
+            </div>
+        </div>
+    
+        <form method="POST">
+        <label>City Name:</label><br>
+        <input type="text" name="city_name" required><br>
+  
+        <label>State:</label><br>
+        <input type="text" name="state" required><br><br>
+
+        <button type="submit">Add City</button>
+        </form>
+        <p style="color: rgb(217, 22, 26);">{{ message }}</p>
+    </div>
+  </body>
+</html>
+
+        

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .container {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            margin-top: 20px;
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #218838;
+        }
+
+        .link {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Edit Profile</h2>
+
+        <form method="POST">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ provider.email }}" required>
+
+            <label>Mobile</label>
+            <input type="text" name="mobile" value="{{ provider.mobile }}" required>
+
+            <label>City</label>
+            <input type="text" name="city" value="{{ provider.city }}" required>
+
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+
+        <a href="/provider/change_password" class="link">Change Password</a>
+    </div>
+</div>
+
+</body>
+</html>

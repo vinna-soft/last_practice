@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>User Panel</h2>
+        <a href= "/dashboard">Dashboard</a>
+        <a href="/my_bookings">My Bookings</a>
+        <a href="#">Payment History</a>
+        <a href="#">Chat</a>
+        <a href="/notifications">🔔Notification</a>
+        <a href="/customer/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+<div class="main">
+    <div class="header">
+        <h2>My Bookings</h2>
+    </div>
+
+    <div class="table">
+        <table>
+            <tr>
+                <th>Service</th>
+                <th> Servicer</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.service_name }}</td>
+                <td>{{ booking.provider_name }}</td>
+                <td>{{ booking.booking_date }}</td>
+
+                <td>
+                    {% if booking.status == "completed" %}
+                    <span class="completed">Completed</span>
+
+                    {% elif booking.status =="pending" %}
+                    <span class="pending">Pending</span>
+                    {% else %}
+                    {{booking.status}}
+                    {% endif %}
+                </td>
+            
+
+            <td>
+                {% if booking.status == "pending" %}
+             
+                <a href="/reschedule/{{booking.booking_id}}">
+                <button class="btn-primary">Reschedule</button>
+                </a> 
+                <a href="/cancel/{{booking.booking_id}}">
+                <button class="btn-danger">Cancel</button>
+                </a>
+
+                {% elif booking.status == "accepted" %}     
+                <a href="/customer/bookings/view/{{ booking.booking_id }}">
+                    <button class="view-btn"> View</button>
+                </a>
+
+                {% elif booking.status == "completed" %} 
+                <a href="/customer/bookings/view/{{ booking.booking_id }}">
+                    <button class="view-btn"> View</button>
+                </a>
+                {% endif %}
+            </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

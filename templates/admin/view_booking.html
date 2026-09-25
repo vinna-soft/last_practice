@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>admin view bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='view.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="#">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    <div class="booking-card">
+
+    <h2>Booking Details</h2>
+
+    <div class="section-title">Basic Info</div>
+
+    <div class="info"><b>Booking ID:</b> <span>{{ booking.booking_id }}</span></div>
+    <div class="info"><b>Customer:</b> <span>{{ booking.customer_name }}</span></div>
+    <div class="info"><b>Provider:</b> <span>{{ booking.provider_name }}</span></div>
+    <div class="info"><b>Service:</b> <span>{{ booking.service_name }}</span></div>
+     <hr>
+    <div class="section-title">Booking Info</div>
+
+    <div class="info"><b>Date:</b> <span>{{ booking.booking_date }}</span></div>
+    <div class="info"><b>Time:</b> <span>{{ booking.booking_time }}</span></div>
+    <div class="info"><b>Address:</b> <span>{{ booking.address }}</span></div>
+    <div class="info"><b>Amount:</b> <span>₹ {{ booking.amount }}</span></div>
+    <div class="info">
+        <b>Status:</b> 
+        <span class="status {{ booking.status }}">{{ booking.status }}</span>
+    </div>
+
+    <hr>
+    <div class="section-title">Review</div>
+
+    {% if booking.status == 'completed' and booking.rating %}
+        <div class="review-box">
+            <p><b>Rating:</b> {{ booking.rating }} ⭐</p>
+            <p><b>Review:</b> {{ booking.review}}</p>
+        </div>
+    {% else %}
+        <p class="no-review">No review available</p>
+    {% endif %}
+
+</div>
+
+
+</body>
+</html>

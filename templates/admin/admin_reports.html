@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin reports</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='reports.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    
+    
+    <div class="reports-card">
+        <h2> Reports Overview</h2>
+
+        <div class="section-title"> {{ session.city }} {% if zone_name %} - {{ zone_name}} {% endif %}  Reports</div>
+
+        <div class="info"><b>{{ session.city}}
+                {% if zone_name %}- {{ zone_name }}
+                {% endif %}
+             total Revenue Generated:</b> <span>₹ {{ total_revenue }}</span></div>
+
+
+        <div class="info"><b>Top Service:</b> <span>{{ top_service.service_name if top_service else 'N/A' }}</span></div>
+
+        <div class="info"><b>Total Bookings :</b> <span>{{ total_bookings }}</span></div>
+
+        <div class="info"><b>Total Customers:</b> <span>{{ total_customers }}</span></div>
+
+        <div class="info"><b>Active Providers:</b> <span>{{ active_providers }}</span></div>
+
+        <div class="info"><b>New Customers (Current Month):</b> <span>{{ new_customers_per_month }}</span></div>
+
+        <div class="info"><b>Most Booking Provider:</b> <span>{{ most_booking_provider.name if most_booking_provider else 'N/A' }}</span></div>
+
+        <div class="info"><b>{{session.city}} Providers performing:</b><a href="/admin/reports/all_providers">View All Providers</a></div>
+        <table border="1">
+        <tr>
+            <th>Provider_id</th>
+            <th>Provider</th>
+            <th>Service</th>
+            <th>Total bookings</th>
+            <th>Rating</th>
+            <th>Earnings</th>
+        </tr>
+
+        {% for p in top_performer_providers %}
+        <tr>
+            <td>{{ p.provider_id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.service_name}}</td>
+            <td>{{ p.total_jobs }}</td>
+            <td>{{ p.rating }}</td>
+            <td>₹{{p.earnings}}
+        </tr>
+        {% endfor %}
+       </table><br>
+
+        <div class="info"><b>Monthly revenue:</b><br>
+         <form method="GET">
+            <label for="month">Select Month:</label>
+            <select id="month" name="month">
+                <option value="">-- Select Month --</option>
+                {% for row in monthly_revenue %}
+                <option value="{{ row.month }}">{{ row.month }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">View Revenue</button>
+        </form> 
+        </div>
+        <table border="1">
+        <tr>
+            <th>Month</th>
+            <th>Revenue</th>
+            <th>Bookings</th>
+        </tr>
+
+        {% for row in monthly_revenue %}
+        <tr>
+            <td>{{ row.month }}</td>
+            <td>₹{{ row.revenue }}</td>
+            <td>{{ row.total_bookings }}</td>
+        </tr>
+        {% endfor %}
+       </table>
+        <div><br>
+            {% if page > 1 %}
+                <a href="?month={{ request.args.get('month') }}&page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            
+            <a href="?month={{ request.args.get('month') }}&page={{ page + 1 }}">Next</a>
+            
+        </div>
+    </div>
+
+</body>
+        
+</html>

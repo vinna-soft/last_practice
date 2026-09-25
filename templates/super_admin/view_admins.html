@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cities Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="#">Create Zones</a>
+        <a href="#">Create Admins</a>
+        <a href="#">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="#">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+
+    <div class="main">
+        <div class="header">
+            <h2>Manage admins</h2>
+        </div>
+
+        <table>
+            <tr>
+                <th> ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Details</th>
+                
+            </tr>
+            {% for admin in admins %}
+            <tr>
+                <td>{{ admin.admin_id}}</td>
+                <td>{{ admin.name }}</td>
+                <td>{{ admin.email }}</td>
+                <td>{{ admin.city }}</td>
+                <td>
+                    {% if admin.status == 'active' %}
+                        <span style="color: green; font-weight: bold;">Active</span>
+                    {% else %}
+                        <span style="color: red; font-weight: bold;">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if admin.status == 'active' %}
+                    <a href="/super_admin/admin/deactivate/{{ admin.admin_id }}">
+                    <button style="background:red; color:white;">Deactivate</button>
+                    </a>
+
+                    {% else %}
+                    <a href="/super_admin/admin/activate/{{ admin.admin_id }}">
+                    <button style="background:green; color:white;">Activate</button>
+                    </a>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="/super_admin/admins/view/{{ admin.admin_id }}">
+                        <button class="view-btn"> View</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>

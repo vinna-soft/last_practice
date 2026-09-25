@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin reports</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='reports.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    
+    
+    <div class="reports-card">
+        <h2> Reports Overview</h2>
+
+        <div class="section-title"> {{ session.city }} {% if zone_name %} - {{ zone_name}} {% endif %}  All providers performing</div>
+        <div class="info"><b>Providers performing:</b></div>
+        <table border="1">
+        <tr>
+            <th>Provider_id</th>
+            <th>Provider</th>
+            <th>Service</th>
+            <th>Total bookings</th>
+            <th>Rating</th>
+            <th>Earnings</th>
+        </tr>
+
+        {% for p in top_performer_providers %}
+        <tr>
+            <td>{{ p.provider_id }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.service_name}}</td>
+            <td>{{ p.total_jobs }}</td>
+            <td>{{ p.rating }}</td>
+            <td>₹{{p.earnings}}
+        </tr>
+        {% endfor %}
+       </table><br>
+       
+        <div>
+            {% if page > 1 %}
+                <a href="?page={{ page - 1 }}">Previous</a>
+            {% endif %}
+            
+            <a href="?page={{ page + 1 }}">Next</a>
+            
+        </div>
+    </div>
+
+</body>
+        
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="#">Create Admins</a>
+        <a href="#">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="#">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+
+    <div class="main">
+        <div class="header">
+            <h2>All Services</h2>
+        </div>
+
+        <table>
+            <tr>
+                <th> ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>status</th>
+                <th>Action</th>
+                
+            </tr>
+            {% for service in services %}
+            <tr>
+                <td>{{ service.service_id }}</td>
+                <td>{{ service.service_name }}</td>
+                <td>{{ service.description }}</td>
+                
+                <td>
+                    {% if service.status == 'available' %}
+                        <span style="color: green; font-weight: bold;">Available</span>
+                    {% else %}
+                        <span style="color: red; font-weight: bold;">Unavailable</span>
+                    {% endif %}
+                </td>
+                
+                <td>
+                    {% if service.status == 'available' %}
+                    <a href="/super_admin/service/unavailable/{{ service.service_id }}">
+                    <button style="background:red; color:white;">Unavailable</button>
+                    </a>
+
+                    {% else %}
+                    <a href="/super_admin/service/available/{{ service.service_id }}">
+                    <button style="background:green; color:white;">Available</button>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+           
+
+        </table>
+    </div>
+</body>
+</html>

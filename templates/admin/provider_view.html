@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='view.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="#">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    <div class="booking-card">
+
+    <h2>Provider Details</h2>
+
+    <div class="section-title">Basic Info</div>
+
+    <div class="info"><b>Name:</b> <span>{{ provider.name }}</span></div>
+    <div class="info"><b>Email:</b> <span>{{ provider.email }}</span></div>
+    <div class="info"><b>mobile:</b> <span>{{ provider.mobile }}</span></div>
+    <div class="info"><b>Service:</b> <span>{{ provider.service_name }}</span></div>
+    <div class="info"><b>City:</b> <span>{{ provider.city }}</span></div>
+    <div class="info"><b>Zone name:</b> <span>{{ provider.zone_name if provider.zone_name else 'N|A'}}</span></div>
+    <div class="info"><b>Address:</b> <span>{{ provider.address }}</span></div>
+    <div class="info"><b>Experience:</b> <span>{{ provider.experience }}</span></div>
+    <div class="info"><b>Service Price</b> <span>{{ provider.price }}</span></div>
+     <hr>
+    <div class="section-title">Verification Details</div>
+
+    <div class="info"><b>Date of Birth:</b> <span>{{ provider.dob }}</span></div>
+    <div class="info"><b>Bank Account:</b> <span>{{ provider.bank_account }}</span></div>
+    <div class="info"><b>IFS Code:</b> <span>{{ provider.ifsc_code }}</span></div>
+    <div class="info"><b>Adhar Number:</b> <span>{{ provider.adhar }}</span></div>
+    <div class="info"><b>Pan number:</b> <span>{{ provider.pan }}</span></div>
+    <div class="info">
+        <b>Verification Status:</b> 
+        <span class="status {{ provider.verification_status }}">{{ provider.verification_status }}</span>
+    </div>
+    <hr>
+    <div class="info"><b>Service Inclusions:</b> <span>{{ provider.inclusions }}</span></div>
+    <hr>
+    <div class="info"><b>Service Description:</b> <span>{{ provider.description }}</span></div>
+
+    <div class="info">
+        <b> Account Action : </b>
+        {% if provider.status == 'active' %}
+            <a href="/admin/provider/deactivate/{{ provider.provider_id }}">
+                <button style="background:red; color:white;">Deactivate</button>
+            </a>
+
+        {% else %}
+            <a href="/admin/provider/activate/{{ provider.provider_id }}">
+                <button style="background:green; color:white;">Activate</button>
+            </a>
+        {% endif %}
+    </div>
+
+    {% if provider.verification_status == 'pending' %}
+
+    <div class="info">
+
+        <form action="/providers/approve/{{provider.provider_id}}" method="POST">
+            <button class="btn-primary">Accept</button>
+        </form>
+
+        <form action="/providers/reject/{{provider.provider_id}}" method="POST">
+            <button type="submit" class="btn-danger">Reject</button>
+            <input type="text" name="reason" placeholder="Reason" required min="5">
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+
+</body>
+</html>

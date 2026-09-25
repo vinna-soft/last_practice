@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Provider Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Service provider Panel</h2>
+        <a href="/provider/dashboard">Dashbord</a>
+        <a href="/provider/profile">My Profile</a>
+        <a href="/provider/my_jobs">My Jobs</a>
+        <a href="#">Earnings</a>
+        <a href="#">Chat</a>
+        <a href="/provider/verification">Verification</a>
+        <a href="/provider/notifications">🔔Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>      
+    </div>
+
+
+    <div class="main">
+        <div class="header">
+            <h2>Servicer Overview</h2>
+        </div>
+      <div class="cards">    
+        <div class="card total">
+            <h3>Total jobs</h3>
+            <p>{{ total_jobs }}</p>
+        </div>
+        <div class="card pending">
+            <h3>Pending jobs</h3>
+            <p>{{ pending_jobs }}</p>
+        </div>
+        <div class="card completed">
+            <h3>Completed jobs</h3>
+            <p>{{ completed_jobs}}</p>
+        </div>
+        <div class="card accepted">
+            <h3>Accepted jobs</h3>
+            <p>{{ accepted_jobs}}</p>
+        </div>
+      </div>  
+    </div>
+
+</body>
+</html>

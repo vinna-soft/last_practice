@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin add admin</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='super_admin.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Add Admin</h2>
+            <div class="nav">
+            <a href="/super_admin/admins">View Admins</a>
+            </div>
+        </div>
+    
+        <form method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name" placeholder="Enter full name" required><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" placeholder="Enter Email" required><br>
+
+        <label>Mobile:</label><br>
+        <input type="text" name="mobile" placeholder="Enter Mobile Number" required><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" placeholder="Enter Password" required><br><br>
+
+        <button type="submit">Add Admin</button>
+        </form>
+        <p style="color: rgb(217, 22, 26);">{{ message }}</p>
+    </div>
+  </body>
+</html>
+
+        

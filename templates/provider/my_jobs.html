@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Service provider Panel</h2>
+        <a href="/provider/dashboard">Dashbord</a>
+        <a href="/provider/profile">My Profile</a>
+        <a href="/provider/my_jobs">My Jobs</a>
+        <a href="#">Earnings</a>
+        <a href="#">Chat</a>
+        <a href="/provider/verification">Verification</a>
+        <a href="/provider/notifications">🔔Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>      
+    </div>
+    
+<div class="main">
+    <div class="header1">
+        <h2>My jobs</h2>
+        <div class="nav">
+            <a href="/providers/view_reviews">View Reviews</a>
+        </div>
+    </div>
+
+    <div class="table">
+        <table>
+            <tr>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Check</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.customer_name }}</td>
+                <td>{{ booking.service_name }}</td>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.status }}</td>
+
+
+            <td>
+                {% if booking.status == "pending" %}
+             
+                <form action="/accept_booking/{{booking.booking_id}}" method="POST">
+                <button class="btn-primary">Accept</button>
+                </form>
+
+                <form action="/reject_booking/{{booking.booking_id}}" method="POST">
+                <button type="submit" class="btn-danger">Reject</button>
+                <input type="text" name="reason" placeholder="Reason" required min="5">
+                </form>
+
+
+                {% elif booking.status == "accepted" %}
+                <form action="/complete_booking/{{ booking.booking_id }}" method="POST">
+                    <button type="submit" class="btn-completed">Complete</button>
+                </form>
+
+                {% else %}
+                   -
+                {% endif %}
+
+            </td>
+            <td>
+                <a href="/provider/bookings/view/{{ booking.booking_id }}">
+                    <button class="view-btn">View</button>
+                </a>
+            </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+     *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+body{
+    background: whitesmoke;
+    display: flex;
+}
+.sidebar{
+    width: 220px;
+    height: 100vh;
+    background: #2c3f75;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+.sidebar h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+   }
+.sidebar a:hover{
+    background: green;
+}
+.main{
+    flex: 1;
+    margin: 20px;
+
+    
+}
+.booking-card{
+    width: 600px;
+    margin: 30px;
+    margin-left: 340px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.booking-card h2{
+    text-align: center;
+    margin-bottom: 10px;
+    color: rgb(67, 67, 67);
+}
+.section-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+.info{
+   
+    padding: 5px 0;
+    
+}
+.info b{
+    color: #2c3f75;
+    margin-right: 20px;
+}
+.status{
+    font-weight: bold;
+}
+.status.completed{
+    color: blue;
+}
+.status.pending{
+    color: red;
+}
+.status.cancelled{
+    color: orange;
+}
+.review-box{
+    background: white;
+    padding: 10px;
+    margin-top: 20px;
+}
+.btn{
+    display: inline-block;
+    padding: 8px;
+    margin: 8px ;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    color: black;
+}
+
+.btn-edit{
+    background-color: green;
+}
+.btn-edit:hover{
+    background-color: rgb(0, 80, 0);
+}
+.btn-password{
+    background-color: lightskyblue;
+}
+.btn-password:hover{
+    background-color: rgb(75, 169, 227);
+}
+button{
+    padding: 6px;
+    margin: 4px ;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 6px;
+}

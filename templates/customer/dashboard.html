@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+
+    <title>Customer dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>User Panel</h2>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/my_bookings">My Bookings</a>
+        <a href="#">Payment History</a>
+        <a href="#">Chat</a>
+        <a href="/notifications">🔔Notification({{ notification_count }})</a>
+        <a href="/customer/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div> 
+
+     <div class="main">
+        <div class="header">
+            <h2>Dashboard Overview</h2>
+            
+        </div>
+
+        <div class="cards">
+            
+            <div class="card">
+                <h3>Completed Bookings</h3>
+                <p>{{ completed }}</p>
+            </div>
+            <div class="card">
+                <h3> Pending Bookings</h3>
+                <p>{{ pending_bookings }}</p>
+            </div>
+        </div><br><br>
+
+       <div class="table">
+        <table>
+            <tr>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.service_name }}</td>
+                <td>{{ booking.booking_date }}</td>
+
+                <td>
+                    {% if booking.status == "completed" %}
+                    <span class="completed">Completed</span>
+
+                    {% elif booking.status =="pending" %}
+                    <span class="pending">Pending</span>
+                    {% else %}
+                    {{booking.status}}
+                    {% endif %}
+                </td>
+            
+
+            <td>
+                {% if booking.status == "pending" %}
+             
+                <button class="btn-primary">Reschedule</button>
+                </a> 
+
+                <button class="btn-danger">Cancel</button>
+                </a>
+                {% else %}
+                   -
+                {% endif %}
+            </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        </div>
+</body>
+</html>

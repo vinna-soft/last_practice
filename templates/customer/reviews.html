@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='super_admin.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>User Panel</h2>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/my_bookings">My Bookings</a>
+        <a href="#">Payment History</a>
+        <a href="#">Chat</a>
+        <a href="/notifications">🔔Notification({{ notification_count }})</a>
+        <a href="/customer/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+
+    <div class="main">
+        <div class="header">
+            <h2>Give Reviews & Ratings</h2>
+            <div class="nav">
+            
+            </div>
+        </div>
+        <form method="POST">
+            <label>Rating:</label><br>
+            <select name="rating" required>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select><br><br>
+
+            <label>Review:</label><br>
+            <textarea name="review" required></textarea><br><br>
+
+          <button type="submit">Submit</button>
+        </form> 
+    </div>
+  </body>
+</html>
+
+        
