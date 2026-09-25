@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Service provider Panel</h2>
+        <a href="">Dashbord</a>
+        <a href="/provider/profile">My Profile</a>
+        <a href="/provider/my_jobs">My Jobs</a>
+        <a href="#">Earnings</a>
+        <a href="#">Chat</a>
+        <a href="/provider/verification">Verification</a>
+        <a href="/provider/notifications">🔔Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>      
+    </div>
+    
+    <div class="main1">
+        <div class="header">
+            <h2>Account Verification</h2>
+        </div>
+
+    <div class="box">
+
+        <h3>Upload Documents</h3>
+        <form method="post" enctype="multipart/form-data">
+            <label>Date of birth</label><br>
+            <input type="date" name="dob" value="{{dod}}"  required><br>
+            {% if dob_error %}
+            <p class="error">{{dob_error}}</p>
+            {% endif %}
+
+            <label>ID Proof (Aadhar)</label><br>
+            <input type="text" name="adhar" placeholder="Aadhar number" value="{{adhar}}"  required><br>
+            {% if aadhar_error %}
+            <p class="error">{{aadhar_error}}</p>
+            {% endif %}
+
+
+            <label>PAN Card Number</label><br>
+            <input type="text" name="pan" placeholder="Pan card number" value="{{pan}}"  required><br>
+            {% if pan_error %}
+            <p class="error">{{pan_error}}</p>
+            {% endif %}
+
+            <label>Bank Account Number</label><br>
+            <input type="text" name="bank_account" placeholder="Enter Account Number" value="{{bank_account}}"  required><br>
+            {% if bank_error %}
+            <p class="error">{{bank_error}}</p>
+            {% endif %}
+
+            <label>IFSC Code</label><br>
+            <input type="text" name="ifsc_code" placeholder="Enter IFSC Code" value="{{ifsc_code}}" required><br>
+            {% if ifsc_error %}
+            <p class="error">{{ifsc_error}}</p>
+            {% endif %}
+
+            <label>service work description</label><br>
+            <input type="text" name="description" placeholder="Enter service work description" value="{{description}}" required><br>
+            {% if ifsc_error %}
+            <p class="error">{{ifsc_error}}</p>
+            {% endif %}
+
+            <button type="submit" class="btn">Submit for Verification</button>
+        </form>
+
+    <div class="status-card">
+      <h3>Verification Status</h3><br>
+
+    <p>
+        <b>Admin Approval:</b> 
+        <span class="status-text 
+            {% if verification_status == 'approved' %} approved
+            {% elif verification_status == 'pending' %} pending
+            {% elif verification_status == 'rejected' %} rejected
+            {% else %} not
+            {% endif %}
+        ">
+            {{ verification_status | capitalize }}
+        </span>
+    </p><br>
+
+    {% if verification_status == 'rejected' %}
+        <p class="reason">
+            <b>Reason:</b> {{ rejection_reason }}
+        </p>
+    {% endif %}
+    {% if msg %}
+    <p style="color: green;">{{ msg }}</p>
+    {% endif %}
+</div>
+
+    </div>
+    </div>
+</body>
+</html>

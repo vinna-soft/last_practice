@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+
+    <div class="main">
+        <div class="header">
+            <h2>Super Admin Overview</h2>
+        </div>
+      <div class="cards">    
+        <div class="card admins">
+            <h3>Total Admins</h3>
+            <p>{{ total_admins }}</p>
+        </div>
+        <div class="card providers">
+            <h3>Total Providers</h3>
+            <p>{{ total_providers }}</p>
+        </div>
+        <div class="card customers">
+            <h3>Total Customers</h3>
+            <p>{{ total_customers }}</p>
+        </div>
+        <div class="card cities">
+            <h3>Total Cities</h3>
+            <p>{{ total_cities }}</p>
+        </div>
+
+      </div>  
+    </div>
+
+</body>
+</html>

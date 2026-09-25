@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='provider_profile.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>User Panel</h2>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/my_bookings">My Bookings</a>
+        <a href="#">Payment History</a>
+        <a href="#">Chat</a>
+        <a href="/notifications">🔔Notification({{ notification_count }})</a>
+        <a href="/customer/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    
+
+    <div class="container">
+        <h2 class="tittle">My Profile</h2>
+
+    <div class="card">
+        <h3>{{ customer.name}}</h3><br>
+        <p><b>Email:</b> {{ customer.email }}</p><br>
+        <p><b>Mobile:</b> {{ customer.mobile }}</p><br>
+        <p><b>city:</b> {{ customer.city }}</p><br>
+        <p><b>address</b> {{ customer.address }}</p><br>
+        <p><b>Zone name:</b> {{ customer.zone_name if customer.zone_name else 'N|A'}}</p><br>
+
+        <a href="/customer/edit_profile" class="btn btn-edit">Edit Profile</a>
+        <a href="/customer/change_password" class="btn btn-password">Change Password</a>
+    </div>        
+    </div>
+</div>
+</body>
+</html>

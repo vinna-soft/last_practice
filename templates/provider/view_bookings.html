@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>provider bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='view.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Service provider Panel</h2>
+        <a href="">Dashbord</a>
+        <a href="/provider/profile">My Profile</a>
+        <a href="/provider/my_jobs">My Jobs</a>
+        <a href="#">Earnings</a>
+        <a href="#">Chat</a>
+        <a href="/provider/verification">Verification</a>
+        <a href="/provider/notifications">🔔Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>      
+    </div> 
+    
+    <div class="booking-card">
+
+    <h2>Booking Details</h2>
+
+    <div class="section-title">Basic Info</div>
+
+    <div class="info"><b>Booking ID:</b> <span>{{ booking.booking_id }}</span></div>
+    <div class="info"><b>Customer:</b> <span>{{ booking.customer_name }}</span></div>
+    <div class="info"><b>Provider:</b> <span>{{ booking.provider_name }}</span></div>
+    <div class="info"><b>Service:</b> <span>{{ booking.service_name }}</span></div>
+     <hr>
+    <div class="section-title">Booking Info</div>
+
+    <div class="info"><b>Date:</b> <span>{{ booking.booking_date }}</span></div>
+    <div class="info"><b>Time:</b> <span>{{ booking.booking_time }}</span></div>
+    <div class="info"><b>Provider city:</b> <span>{{ booking.city }}</span></div>
+    <div class="info"><b>Zone name:</b> <span>{{ boooking.zone_name if booking.zone_name else 'N|A'}}</span></div>
+    <div class="info"><b>Address:</b> <span>{{ booking.address }}</span></div>
+    <div class="info"><b>Amount:</b> <span>₹ {{ booking.amount }}</span></div>
+    <div class="info">
+        <b>Status:</b> 
+        <span class="status {{ booking.status }}">{{ booking.status }}</span>
+    </div>
+    <hr>
+    <div class="section-title">Booking Review Details</div>
+    
+    {% if review %}
+    <div class="info"><b>Provider:</b> <span> {{ review.provider_name }}</span></div>
+    <div class="info"><b>Rating:</b> <span> ⭐ {{ review.rating }}</span></div>
+    <div class="info"><b>Review:</b> <span> {{ review.review }}</span></div>
+     {% else %} 
+
+    {% if booking.rating %}
+    <p><b>Rating:</b>  {{ booking.rating }} ⭐</p>
+    <p><b>Review:</b> {{ booking.review }}</p>
+    {% else %}
+    <p>No review available</p>
+    {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>

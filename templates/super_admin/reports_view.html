@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Admin reports</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='reports.css') }}">
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+    
+    <div class="reports-card">
+        <h2> Reports Overview</h2>
+
+        <div class="section-title">Basic Sample Info</div>
+
+        <div class="info"><b>Total Revenue:</b> <span>₹ {{ total_revenue }}</span></div>
+
+
+        <div class="info"><b>Top Service:</b> <span>{{ top_service.service_name if top_service else 'N/A' }}</span></div>
+
+        <div class="info"><b>Total Bookings:</b> <span>{{ total_bookings }}</span></div>
+
+        <div class="info"><b>Total Customers:</b> <span>{{ total_customers }}</span></div>
+
+        <div class="info"><b>Active Providers:</b> <span>{{ active_providers }}</span></div>
+
+        <div class="info"><b>Top Provider:</b> <span>{{ most_booking_provider.name if most_booking_provider else 'N/A' }}</span></div>
+
+        <div class="info"><b>Monthly revenue:</b><br>
+            
+        {% for row in monthly_revenue %}
+             <span>{{ row.month }} : ₹{{ row.revenue }}</span>
+            
+        {% endfor %}    
+        </div>
+
+        <div class="info"><b>City Wise Reports:</b></div>
+        <table border="1">
+        <tr>
+            <th>City</th>
+            <th>Bookings</th>
+            <th>Revenue</th>
+        </tr>
+
+        {% for row in city_wise_reports %}
+        <tr>
+            <td>{{ row.city }}</td>
+            <td>{{ row.city_bookings }}</td>
+            <td>₹{{ row.city_revenue }}</td>
+        </tr>
+        {% endfor %}
+       </table>
+
+       <div class="info"><b>City Wise providers list:</b></div>
+        <table border="1">
+        <tr>
+            <th>City</th>
+            <th>Providers</th>
+        </tr>
+
+        {% for row in provider_reports %}
+        <tr>
+            <td>{{ row.city_name }}</td>
+            <td>{{ row.providers_count }}</td>
+        </tr>
+        {% endfor %}
+       </table>
+
+       
+    </div>
+
+</body>
+</html>

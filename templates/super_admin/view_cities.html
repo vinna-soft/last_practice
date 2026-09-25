@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cities Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="#">Create Zones</a>
+        <a href="#">Create Admins</a>
+        <a href="#">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="#">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+    
+
+    <div class="main">
+        <div class="header">
+            <h2>Manage cities</h2>
+        </div>
+
+        <table>
+            <tr>
+                <th> ID</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Status</th>
+                <th>Action</th>
+                
+            </tr>
+            {% for city in cities %}
+            <tr>
+                <td>{{ city.city_id }}</td>
+                <td>{{ city.city_name }}</td>
+                <td>{{ city.state }}</td>
+                <td>
+                    {% if city.status == 'active' %}
+                        <span style="color: green; font-weight: bold;">Active</span>
+                    {% else %}
+                        <span style="color: red; font-weight: bold;">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if city.status == 'active' %}
+                    <a href="/super_admin/city/deactivate/{{ city.city_id }}">
+                    <button style="background:red; color:white;">Deactivate</button>
+                    </a>
+
+                    {% else %}
+                    <a href="/super_admin/city/activate/{{ city.city_id }}">
+                    <button style="background:green; color:white;">Activate</button>
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>

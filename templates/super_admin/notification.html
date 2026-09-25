@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='notifications.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Super Admin</h2>
+        <a href="/super_admin/dashboard">Dashboard</a>
+        <a href="/super_admin/add_city">Add City</a>
+        <a href="/super_admin/add_zone">Create Zones</a>
+        <a href="/super_admin/add_admin">Create Admins</a>
+        <a href="/super_admin/assign_admin">Assign zone Admin</a>
+        <a href="/super_admin/assign_city_admin">Assign city Admin</a>
+        <a href="/super_admin/add_services">Add services</a>
+        <a href="/super_admin/reports">Reports</a>
+        <a href="/super_admin/notifications">Notifications</a>
+        <a href="/logout">Logout</a>
+    </div>
+   
+
+<div class="container">
+    <h2>🔔 Notifications</h2>
+
+    {% if notifications %}
+        {% for n in notifications %}
+            <div class="notification-card {% if not n.is_read %}unread{% endif %}">
+                
+                <div class="message">
+                    {{ n.message }}
+                </div>
+
+                <div class="meta">
+                    <span class="type">{{ n.type }}</span>
+                    <span class="time">{{ n.created_at }}</span>
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty">No notifications yet</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

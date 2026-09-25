@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>provider profile</title>
+<style>
+     *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+body{
+    background: whitesmoke;
+    display: flex;
+}
+.sidebar{
+    width: 220px;
+    height: 100vh;
+    background: #2c3f75;
+    color: white;
+    padding: 20px;
+}
+.sidebar h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+   }
+.sidebar a:hover{
+    background: green;
+}
+.main{
+    flex: 1;
+    margin: 20px;
+    
+}
+.booking-card{
+    width: 600px;
+    margin: 30px;
+    margin-left: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.booking-card h2{
+    text-align: center;
+    margin-bottom: 10px;
+    color: rgb(67, 67, 67);
+}
+.section-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: black;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+.info{
+   
+    padding: 5px 0;
+    
+}
+.info b{
+    color: #2c3f75;
+    margin-right: 20px;
+}
+.status{
+    font-weight: bold;
+}
+.status.completed{
+    color: blue;
+}
+.status.pending{
+    color: red;
+}
+.status.cancelled{
+    color: orange;
+}
+.review-box{
+    background: white;
+    padding: 10px;
+    margin-top: 20px;
+}
+</style>
+
+
+</head>
+<body>
+     
+    <div class="booking-card">
+
+    <h2> Provider Profile</h2>
+
+    <div class="section-title">Provider Info</div>
+    <div class="info"><b>Provider Name</b> <span>{{ provider.name }}</span></div>
+    <div class="info"><b>Service provider : -</b> <span>{{ provider.service_name }}</span></div>
+    <div class="info"><b>Email:</b> <span>{{ provider.email }}</span></div>
+    <div class="info"><b>Mobile:</b> <span>{{ provider.mobile }}</span></div>
+    <div class="info"><b>Service city :</b> <span>{{ provider.city }}</span></div>
+    <div class="info"><b>Experience:</b> <span>{{ provider.experience }}</span></div>
+    <hr><br>
+    <a href="/providers/check_reviews/{{ provider.provider_id }}">check provider Reviews</a>
+    <hr><br>
+</div>
+
+</body>
+  
+</html>

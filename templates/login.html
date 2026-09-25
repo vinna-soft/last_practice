@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+   <style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgb(209, 202, 192);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.login-box {
+    background: white;
+    width: 300px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+.error{
+    color: red;
+    font-size: 14px;
+}
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>LOGIN</h2>
+
+    <form method="post" action="/login">
+        <div class="input-group">
+            <label>Phone Number:</label>
+            <input type="text" name="mobile" placeholder="Enter phone number">
+            {% if mobile_error %}
+            <p class="error">{{mobile_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter password">
+            {% if password_error %}
+            <p class="error">{{password_error}}</p>
+            {% endif %}
+        </div>
+
+        <button type="submit">Login</button>
+
+        <p>New user? <a href="/register">Register</a></p>
+    </form>
+</div>
+
+</body>
+</html>

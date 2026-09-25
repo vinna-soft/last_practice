@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Services </title>
+<link rel="stylesheet" href="{{ url_for('static',filename='servicers.css') }}">
+</head>
+
+<body>
+
+
+<header>
+    <div class="logo">🏠 HomeServices</div>
+
+    <form action="/servicers" method="get">
+        <div class="search-box">
+            <input type="text" name="search" value="{{search}}" placeholder="Search services...">
+             <button type="submit">Search</button>
+        </div>
+    </form>
+
+</header>
+
+<div class="filters">
+<form method="GET" action="/servicers">
+
+<label>Price</label>
+<select name="price">
+<option value="" {% if price == "" %}Selected{% endif %}>All</option>
+<option value="300" {% if price == "300" %}selected{% endif %}>Below ₹300</option>
+<option value="500" {% if price == "500" %}selected{% endif %}>Below ₹500</option>
+<option value="1000" {% if price == "1000" %}selected{% endif %}>Below ₹1000</option>
+</select>
+
+<label>Rating</label>
+<select name="rating">
+<option value="" {% if rating == "" %}selected{% endif %}>All</option>
+<option value="3" {% if rating == "3" %}selected{% endif %}>3+</option>
+<option value="4" {% if rating == "4" %}selected{% endif %}>4+</option>
+<option value="4.5" {% if rating == "4.5" %}selected{% endif %}>4.5+</option>
+</select>
+
+<label>Experience</label>
+<select name="experience">
+<option value="" {% if experience == "" %}selected{% endif %}>All</option>
+<option value="2" {% if experience == "2" %}selected{% endif %}>2+ Years</option>
+<option value="5" {% if experience == "5" %}selected{% endif %}>5+ Years</option>
+<option value="10" {% if experience == "10" %}selected{% endif %}>10+ Years</option>
+</select>
+
+<label>City </label>
+<input type="text" name="city" value="{{city}}" placeholder="Enter your city">
+
+<button type="submit">Filter</button>
+
+</form>
+</div>
+
+
+<div class="container">
+
+{% for provider in providers %}
+
+<div class="card">
+
+<h3>{{provider.name}}</h3>
+
+<p>{{provider.service_name}}</p>
+
+<p>{{provider.avg_rating | round(1)}} ⭐ ({{provider.reviews_count}} Reviews)</p>
+
+<p>₹{{provider.price}} Starting</p>
+
+<p>Status : {{provider.provider_status}}</p>
+
+<p> Service Inclusions : {{provider.inclusions}}</p>
+
+<a href="/profile/{{provider.provider_id}}">
+<button class="view">View Profile</button>
+</a> 
+<a href="/booking/{{provider.provider_id}}/{{provider.service_id}}">
+<button type="submit" class="book">Book Now</button>
+</a>
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

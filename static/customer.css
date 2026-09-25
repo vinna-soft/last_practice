@@ -1,0 +1,219 @@
+ *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+body{
+    background: whitesmoke;
+    display: flex;
+}
+.sidebar{
+    width: 220px;
+    height: 100vh;
+    background: #2c3f75;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+.sidebar h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+   }
+.sidebar a:hover{
+    background: green;
+}
+.main{
+    flex: 1;
+    margin: 20px;
+    margin-left: 250px;
+
+    
+}
+.header1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px 80px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.nav a{color: black;
+    text-decoration: none;
+    margin-right: 40px;
+    font-size: 18px;
+}
+.header{
+    background: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+.card{
+    background: white;
+    padding: 35px;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(1,7,6,0.2);
+}
+.card h3{
+    color: #142e76;
+    text-align: center;
+}
+.card p{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px;
+    text-align: center;
+}
+/*table */
+table{
+    width: 100%;
+    border-collapse:collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(11, 11, 11, 0.2);
+
+}
+table th{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+table td{
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+th{
+    background: rgb(173, 173, 253);
+    font-weight: bold;
+    color: black;
+}
+.completed{
+    color: green;
+    font-weight: bold;
+}
+.pending{
+    color: orangered;
+    font-weight: bold;
+}
+.total{
+    color: #9b59b6;
+}
+.approved{
+    color: green;
+    font-weight: bold;
+}
+button{
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-primary{
+    background: cadetblue;
+    color: white;
+}
+.btn-danger{
+    background: red;
+    color: white;
+}
+.btn-completed{
+    background: rgba(197, 134, 17, 0.87);
+    color: white;
+}
+.active{
+    color: green;
+    font-weight: bold;
+}
+.inactive{
+    color: rgb(171, 115, 95);
+    font-weight: bold;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    width: 370px;
+
+}
+
+.main1{
+    margin-left: 250px;
+    padding: 20px;
+
+}
+.box{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+}
+.box input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 9px;
+}
+.btn{
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgb(13, 133, 13);
+}
+.btn:hover{
+    background: rgb(5, 68, 5);
+}
+.status-card{
+    margin-top: 5px;
+    background: white;
+    padding: 10px;
+    width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.status-text{
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+.status-text.pending{
+    color: rgb(188, 102, 70);
+}
+.status-text.approved{color: green;}
+.status-text.rejected{color: red;}
+
+
+
+.nav a{color: black;
+    text-decoration: none;
+    margin-right: 40px;
+    font-size: 18px;
+}
+
+.error{
+    color: red;
+    font-size: 14px;
+}

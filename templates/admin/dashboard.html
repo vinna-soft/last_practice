@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Dashboard Overview</h2>
+            <h2>📍{{ session.city}}
+                {% if zone_name %}- {{ zone_name }}
+                {% endif %}
+            </h2>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3> Total Providers</h3>
+                <p>{{ total_providers }}</p>
+            </div>
+            <div class="card">
+                <h3> Total Customers</h3>
+                <p>{{ total_customers }}</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

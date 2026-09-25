@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Provider Registration</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.register-container {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #36b9cc;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2c9faf;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+.error{
+    color: red;
+    font-size: 14px;
+}
+.success{
+    color: green;
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Service Provider Registration</h2>
+
+    <form action="/provider/register" method="POST">
+
+        <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter full name" value="{{name}}" required>
+            {% if name_error %}
+            <p class="error">{{name_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" value="{{email}}" required>
+            {% if email_error %}
+            <p class="error">{{email_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="tel" name="mobile" placeholder="Enter phone number" value="{{mobile}}" required>
+            {% if mobile_error %}
+            <p class="error">{{mobile_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Address</label>
+            <input type="text" name="address" placeholder="Enter address" value="{{address}}" required>
+            {% if address_error %}
+            <p class="error">{{address_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Service Category</label>
+            <select name="service_id" required>
+                <option value="">Select Service</option>
+                {% for service in services %}
+                <option value="{{ service.service_id }}">{{ service.service_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Work inclusions</label>
+            <input type="text" name="inclusions" placeholder="Enter your service work insclusions" value="{{inclusions}}" required>
+            {% if inclusions_error %}
+            <p class="error">{{inclusions_error}}</p>
+            {% endif %}
+        </div>
+
+
+        <div class="input-group">
+            <label>Experience (Years)</label>
+            <input type="number" name="experience" placeholder="Experience" value="{{experience}}" required>
+            {% if experience_error %}
+            <p class="error">{{experience_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Price</label>
+            <input type="number" name="price" placeholder="Enter work starting price" value="{{price}}" required>
+            {% if price_error %}
+            <p class="error">{{price_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Service Areas (City)</label>
+            <input type="text" name="city" placeholder="Enter service city" value="{{city}}" required>
+            {% if service_area_error %}
+            <p class="error">{{service_area_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder=" Enter Password" value="{{password}}" required>
+            {% if password_error %}
+            <p class="error">{{password_error}}</p>
+            {% endif %}
+        </div>
+
+        <div class="input-group">
+            <label>Zone :</label>
+            <select name="zone_id" >
+                <option value="">Select Zone</option>
+                {% for zone in zones %}
+                  <option value="{{zone.zone_id}}" {% if zone.zone_id == zone_id %}selected{% endif %}>
+                    {{zone.zone_name}}
+                   </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <input type="hidden" name="role" value="provider">
+
+        <button type="submit">Register</button>
+
+        <p class="login-link">
+            Already have account? <a href="/login">Login Here</a>
+        </p>
+     {% if msg %}
+        <p class="success">{{msg}}</p>
+    {% endif %}
+    </form>
+</div>
+
+</body>
+</html>                                                                                 

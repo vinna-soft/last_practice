@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='customer.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h2>Bookings Overview</h2>
+            <h2>📍{{ session.city}}
+                {% if zone_name %}- {{ zone_name }}
+                {% endif %}
+            </h2>
+        </div>
+        <form method="GET">
+                <input type="text" name="provider_name" placeholder="Provider name"
+                            value="{{ provider_name or '' }}">
+                <input type="number" name="provider_id" placeholder="Provider ID" 
+                            value="{{ provider_id or '' }}">
+                <button type="submit">Search</button>
+                <a href="/admin/bookings">Reset</a>
+            </form>
+
+        <table>
+            <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Provider</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.booking_id }}</td>
+                <td>{{ booking.customer_name }}</td>
+                <td>{{ booking.service_name }}</td>
+                <td>{{ booking.provider_name }}</td>
+                <td class="{{ booking.status.lower() }}">{{ booking.status }}</td>
+                <td>
+                    <a href="/admin/bookings/view/{{ booking.booking_id }}">
+                        <button class="view-btn">View</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>

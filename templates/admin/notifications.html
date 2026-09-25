@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='notifications.css') }}">
+
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/customers">Users</a>
+        <a href="/admin/providers">Service Providers</a>
+        <a href="/admin/bookings">Bookings</a>
+        <a href="#">Payments</a>
+        <a href="/admin/view_all_reviews">Reviews</a>
+        <a href="/admin/reports">Reports</a>
+        <a href="/admin/notifications">Notifications</a>
+        <a href="#">Settings</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    
+<div class="container">
+    <h2>🔔 Notifications</h2>
+
+    {% if notifications %}
+        {% for n in notifications %}
+            <div class="notification-card {% if not n.is_read %}unread{% endif %}">
+                
+                <div class="message">
+                    {{ n.message }}
+                </div>
+
+                <div class="meta">
+                    <span class="type">{{ n.type }}</span>
+                    <span class="time">{{ n.created_at }}</span>
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty">No notifications yet</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+    

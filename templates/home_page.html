@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home Service</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">🏠 Home Service</div>
+    <div class="nav">
+        <a href="/servicers">Servicers</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>Professional Home Services</h1>
+    <p>Cleaning, Plumbing, AC Repair & More</p>
+
+    <form action="/search" method="get">
+        <div class="search-box">
+            <input type="text" name="search" placeholder="Search services...">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="popular-services">
+    <h2>Popular Services</h2>
+
+    <div class="services-container">
+        {% for service in services %}
+
+<div class="service-card">
+    <h3>{{service.service_name}}</h3>
+
+    <a href="/servicers?service_id={{service.service_id}}">
+    <button class="button">Select</button>
+</a>
+
+</div>
+{% endfor %}
+</div>
+</div>
+
+
+<!-- WHY CHOOSE US -->
+
+<div class="section why">
+<h2>Why Choose Us?</h2>
+
+<p>✔ Verified Professionals ✔ Affordable Prices</p>
+<p>✔ Fast Service  ✔ 24/7 Support</p>
+
+</div>
+<!-- FOOTER -->
+
+<div class="footer">
+<p>Contact / About / Help / HomeService</p>
+</div>
+
+</body>
+</html>
